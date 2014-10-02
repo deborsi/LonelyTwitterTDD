@@ -22,10 +22,14 @@ public class TweetListModel {
 	 * 
 	 * @param tweet
 	 *            Tweet to be appended to this list
+	 * @throws Exception 
 	 */
-	public void addTweet(AbstractTweet tweet) {
-		// TODO: Add only when it is not a duplicate
-		tweets.add(tweet);
+	public void addTweet(AbstractTweet tweet) throws Exception {
+		if (hasTweet(tweet)){
+			throw new Exception("Already Exists!");
+		}else{
+			tweets.add(tweet);
+		}
 	}
 
 	/**
@@ -34,8 +38,8 @@ public class TweetListModel {
 	 * @return the number of tweets in this list
 	 */
 	public int getCount() {
-		// TODO: return real count
-		return 0;
+		int count = tweets.size();
+		return count;
 	}
 
 	/**
@@ -46,8 +50,7 @@ public class TweetListModel {
 	 * @return true if this list contains the specified element
 	 */
 	public boolean hasTweet(AbstractTweet tweet) {
-		// TODO: Find if the tweet already exists
-		return false;
+		return tweets.contains(tweet);
 	}
 
 	/**
@@ -56,9 +59,14 @@ public class TweetListModel {
 	 * 
 	 * @param tweet
 	 *            Tweet to be removed from this list, if present.
+	 * @throws Exception 
 	 */
-	public void removeTweet(AbstractTweet tweet) {
-		// TODO: Remove tweet
+	public void removeTweet(AbstractTweet tweet) throws Exception {
+		if (hasTweet(tweet)){
+			tweets.remove(tweet);
+		}else{
+			throw new Exception("Tweet does not exist!");
+		}
 	}
 
 	/**
